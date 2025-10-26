@@ -1,43 +1,19 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function IntroScreen({ onStart }) {
   const [started, setStarted] = useState(false);
 
-  useEffect(() => {
-    const handle = () => {
-      if (!started) {
-        setStarted(true);
-        onStart?.();
-      }
-    };
-    window.addEventListener('click', handle, { once: true });
-    window.addEventListener('touchstart', handle, { once: true });
-    return () => {
-      window.removeEventListener('click', handle);
-      window.removeEventListener('touchstart', handle);
-    };
-  }, [started, onStart]);
+  const handleStartClick = () => {
+    if (!started) {
+      setStarted(true);
+      onStart?.();
+    }
+  };
 
   return (
-    <div
-      className="w-full h-screen flex items-center justify-center relative bg-gradient-to-b from-pink-50 via-pink-100 to-white"
-      role="button"
-      tabIndex={0}
-      onClick={() => {
-        if (!started) {
-          setStarted(true);
-          onStart?.();
-        }
-      }}
-      onKeyDown={(e) => {
-        if ((e.key === 'Enter' || e.key === ' ') && !started) {
-          setStarted(true);
-          onStart?.();
-        }
-      }}
-    >
+    <div className="w-full h-screen flex items-center justify-center relative bg-gradient-to-b from-pink-50 via-pink-100 to-white">
       <motion.div
         initial={{ scale: 0.98, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -58,27 +34,17 @@ export default function IntroScreen({ onStart }) {
         </h1>
 
         <p className="mt-3 text-sm md:text-base text-pink-600 max-w-xl mx-auto">
-          A journey of memories and surprises — tap anywhere to open our story
+          A journey of memories and surprises — tap the button to open our story
           together.
         </p>
 
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!started) {
-              setStarted(true);
-              onStart?.();
-            }
-          }}
+          onClick={handleStartClick}
           className="mt-8 inline-flex items-center gap-3 bg-white bg-opacity-80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-pink-200 hover:scale-105 transition-transform focus:outline-none"
         >
           <span className="text-pink-600 font-semibold">Tap to Begin</span>
           <span className="text-xl">✨</span>
         </button>
-
-        <div className="mt-5 text-xs text-pink-400">
-          or tap anywhere on the screen
-        </div>
       </motion.div>
 
       {/* floating hearts decoration */}
@@ -95,7 +61,7 @@ export default function IntroScreen({ onStart }) {
           animate={{ y: [0, -20, 0] }}
           transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut' }}
         >
-          💓
+          💖
         </motion.div>
         <motion.div
           className="absolute left-1/2 bottom-24 text-2xl -translate-x-1/2"
