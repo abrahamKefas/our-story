@@ -21,7 +21,7 @@ export default function MainContent() {
       type: 'video',
       src: `/videos/${i + 1}.mp4`,
     })),
-    ...Array.from({ length: 18 }, (_, i) => ({
+    ...Array.from({ length: 21 }, (_, i) => ({
       type: 'image',
       src: `/photos/${i + 1}.jpg`,
     })),
