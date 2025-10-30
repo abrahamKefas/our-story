@@ -101,7 +101,7 @@ export default function MainContent() {
           {
             date: '13 September, 2025',
             event: 'First Date Together',
-            emoji: '💑',
+            emoji: '👩‍❤‍👨',
           },
           //   {
           //     date: '10 August, 2022',
